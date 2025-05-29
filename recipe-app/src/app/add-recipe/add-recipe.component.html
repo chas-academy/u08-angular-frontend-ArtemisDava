@@ -1,0 +1,154 @@
+<div class="add-recipe-container">
+  <h1 class="main-title">Add New Recipe</h1>
+
+  <form class="recipe-form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label class="form-group-title" for="name">Recipe Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Enter recipe name"
+        required
+        [(ngModel)]="recipe.name"
+      />
+    </div>
+
+    <div class="form-group">
+      <label class="form-group-title" for="image">Image URL</label>
+      <input
+        type="url"
+        id="image"
+        name="image"
+        placeholder="Enter image URL"
+        required
+        [(ngModel)]="recipe.image"
+      />
+    </div>
+
+    <div class="form-group">
+      <label class="form-group-title" for="category">Category</label>
+      <select
+        class="outline-styling"
+        [(ngModel)]="recipe.category"
+        name="category"
+        required
+      >
+        <option value="" disabled>Select category</option>
+        <option *ngFor="let cat of categories" [value]="cat._id">
+          {{ cat.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label class="form-group-title">Ingredients</label>
+      <div class="ingredients-list">
+        <div
+          class="ingredient-item"
+          *ngFor="let ingredient of recipe.ingredients; let i = index"
+        >
+          <select
+            [(ngModel)]="ingredient.ingredient"
+            [name]="'ingredient' + i"
+            class="outline-styling ingredient-select"
+            required
+          >
+            <option value="" disabled>Select ingredient</option>
+            <option *ngFor="let ing of ingredients" [value]="ing._id">
+              {{ ing.name }}
+            </option>
+          </select>
+          <input
+            type="number"
+            placeholder="Qty"
+            class="quantity"
+            min="0"
+            step="0.1"
+            [(ngModel)]="ingredient.quantity"
+            [name]="'quantity' + i"
+            required
+          />
+          <select
+            [(ngModel)]="ingredient.unit"
+            [name]="'unit' + i"
+            required
+            class="unit outline-styling ingredient-select"
+          >
+            <option value="" disabled>Select unit</option>
+            <option *ngFor="let unit of validUnits" [value]="unit">
+              {{ unit || "No unit" }}
+            </option>
+          </select>
+          <button
+            type="button"
+            class="remove-btn"
+            (click)="removeIngredient(i)"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path
+                fill="#ff4444"
+                d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0L284.2 0c12.1 0 23.2 6.8 28.6 17.7L320 32l96 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64S14.3 32 32 32l96 0 7.2-14.3zM32 128l384 0 0 320c0 35.3-28.7 64-64 64L96 512c-35.3 0-64-28.7-64-64l0-320zm96 64c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="add-ingredient-btn"
+        (click)="addIngredient()"
+      >
+        + Add Ingredient
+      </button>
+    </div>
+
+    <div class="form-group">
+      <label class="form-group-title">Instructions</label>
+      <div class="instructions-list">
+        <div
+          class="instruction-item"
+          *ngFor="
+            let instruction of recipeInstructions;
+            let i = index;
+            trackBy: trackByInstructionId
+          "
+        >
+          <textarea
+            [placeholder]="'Enter step ' + (i + 1)"
+            rows="2"
+            required
+            [(ngModel)]="instruction.text"
+            [name]="'instruction' + instruction.id"
+          ></textarea>
+          <button
+            type="button"
+            class="remove-btn"
+            (click)="removeInstruction(i)"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path
+                fill="#ff4444"
+                d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0L284.2 0c12.1 0 23.2 6.8 28.6 17.7L320 32l96 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64S14.3 32 32 32l96 0 7.2-14.3zM32 128l384 0 0 320c0 35.3-28.7 64-64 64L96 512c-35.3 0-64-28.7-64-64l0-320zm96 64c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16z"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="add-instruction-btn"
+        (click)="addInstruction()"
+      >
+        + Add Step
+      </button>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="submit-btn">Add Recipe</button>
+      <button type="button" class="cancel-btn" (click)="onCancel()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
