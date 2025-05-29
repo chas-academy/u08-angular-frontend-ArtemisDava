@@ -1,19 +1,29 @@
-<h1 id="main-title">Edit Recipes</h1>
-<div id="recipe-container">
+<h1 class="main-title">Edit Recipes</h1>
+<div class="recipe-container">
   @for (recipe of recipes; track recipe.id) {
   <div class="recipe-card">
     <img [src]="recipe.image" class="recipe-image" [alt]="recipe.name" />
     <div class="recipe-desc-card">
       <h2 class="recipe-title">{{ recipe.name }}</h2>
-      <button (click)="navigateToRecipe(recipe.id)">Edit Recipe</button>
+      <button
+        class="btn-recipe-container edit-recipe-btn"
+        style="margin-top: 2rem"
+        (click)="navigateToRecipe(recipe.id)"
+      >
+        Edit Recipe
+      </button>
     </div>
   </div>
   }
 </div>
 <div class="show-more-container">
   @if (!showAll) {
-  <button id="show-more" (click)="showMore()">Show more</button>
+  <button id="show-more" class="btn-recipe-container" (click)="showMore()">
+    Show more
+  </button>
   } @else {
-  <button id="show-more" (click)="showLess()">Show less</button>
+  <button id="show-more" class="btn-recipe-container" (click)="showLess()">
+    Show less
+  </button>
   }
 </div>
