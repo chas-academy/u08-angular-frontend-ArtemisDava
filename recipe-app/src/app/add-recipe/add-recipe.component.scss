@@ -57,10 +57,6 @@
       outline: 1px solid #ddd;
     }
 
-    &.ingredient-select {
-      width: 176px;
-    }
-
     &:focus {
       outline: #3b3028 solid 1px;
     }
@@ -84,33 +80,20 @@
   input[type="number"] {
     flex: 0 0 60px;
     text-align: right;
-    min-width: 60px;
-  }
-
-  input[type="text"] {
-    flex: 0 0 60px;
-    min-width: 60px;
   }
 
   .ingredient-select {
     flex: 2;
-    min-width: 120px;
-  }
-
-  .unit {
-    flex: 1;
-    min-width: 80px;
+    min-width: 130px;
   }
 }
 
-//KOLLA KODEN
 .instructions-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-//KOLLA KODEN
 .instruction-item {
   display: flex;
   gap: 12px;
@@ -170,11 +153,11 @@
 
   .cancel-btn {
     background: none;
-    border: 1px solid #ddd;
-    color: #666;
-
+    border: 1px solid #ff0000;
+    color: #ff0000;
     &:hover {
-      background: #f5f5f5;
+      background-color: #ff4444;
+      color: #fbf9f8;
     }
   }
 }
@@ -194,6 +177,9 @@
   .form-group-title {
     font-size: 1rem;
   }
+  .quantity {
+    max-width: 28px;
+  }
 
   input,
   textarea,
@@ -202,31 +188,15 @@
     padding: 6px 10px;
   }
 
-  .ingredient-item .ingredient-select {
-    flex: 1;
-    min-width: 100px;
-  }
-
   .ingredient-item {
     gap: 8px;
     padding: 8px 0;
 
-    input[type="number"] {
-      flex: 0 0 50px;
-      min-width: 50px;
-    }
-    input[type="text"] {
-      flex: 0 0 50px;
-      min-width: 50px;
-    }
-
     .ingredient-select {
-      flex: 1;
       min-width: 100px;
     }
     .unit {
-      flex: 0 0 70px;
-      min-width: 70px;
+      max-width: 20px;
     }
   }
   .instruction-item {
