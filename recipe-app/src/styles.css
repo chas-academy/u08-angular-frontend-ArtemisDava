@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins");
+
+body {
+  font-family: "Playfair Display", serif;
+  background-color: #faf3ed;
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+button,
+.btn-recipe-container {
+  background: #c97c5d;
+  border-radius: 0.5rem;
+  font-family: "Playfair Display", serif;
+  color: #ffffff;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.2rem;
+  cursor: pointer;
+  font-weight: bold;
+  border: 0;
+  line-height: 1.15;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #b06e54;
+  }
+}
+
+#show-more {
+  margin: 1.5rem 0;
+  width: 12rem;
+  background-color: #9f513f;
+  &:hover {
+    background-color: #c97c5d;
+  }
+}
+
+.show-more-container {
+  text-align: center;
+}
+
+.btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.main-title {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #3b3028;
+  margin: 1.5rem 0;
+  text-align: center;
+}
+
+.delete-recipes {
+  background-color: #b85c5a;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #b06e54;
+  }
+}
