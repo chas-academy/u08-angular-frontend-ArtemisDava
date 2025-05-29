@@ -1,0 +1,138 @@
+<div class="add-recipe-container">
+  <h1>Edit Recipe</h1>
+
+  <form class="recipe-form" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Recipe Name</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="Enter recipe name"
+        required
+        [(ngModel)]="recipe.name"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="image">Image URL</label>
+      <input
+        type="url"
+        id="image"
+        name="image"
+        placeholder="Enter image URL"
+        required
+        [(ngModel)]="recipe.image"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select [(ngModel)]="recipe.category" name="category" required>
+        <option value="" disabled>Select category</option>
+        <option *ngFor="let cat of categories" [value]="cat._id">
+          {{ cat.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Ingredients</label>
+      <div class="ingredients-list">
+        <div
+          class="ingredient-item"
+          *ngFor="let ingredient of recipe.ingredients; let i = index"
+        >
+          <select
+            [(ngModel)]="ingredient.ingredient"
+            [name]="'ingredient' + i"
+            required
+          >
+            <option value="" disabled>Select ingredient</option>
+            <option *ngFor="let ing of ingredients" [value]="ing._id">
+              {{ ing.name }}
+            </option>
+          </select>
+          <input
+            type="number"
+            placeholder="Qty"
+            class="quantity"
+            min="0"
+            step="0.1"
+            [(ngModel)]="ingredient.quantity"
+            [name]="'quantity' + i"
+            required
+          />
+          <select
+            [(ngModel)]="ingredient.unit"
+            [name]="'unit' + i"
+            required
+            class="unit"
+          >
+            <option value="" disabled>Select unit</option>
+            <option *ngFor="let unit of validUnits" [value]="unit">
+              {{ unit || "No unit" }}
+            </option>
+          </select>
+          <button
+            type="button"
+            class="remove-btn"
+            (click)="removeIngredient(i)"
+          >
+            ×
+          </button>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="add-ingredient-btn"
+        (click)="addIngredient()"
+      >
+        + Add Ingredient
+      </button>
+    </div>
+
+    <div class="form-group">
+      <label>Instructions</label>
+      <div class="instructions-list">
+        <div
+          class="instruction-item"
+          *ngFor="
+            let instruction of recipeInstructions;
+            let i = index;
+            trackBy: trackByInstructionId
+          "
+        >
+          <textarea
+            [placeholder]="'Enter step ' + (i + 1)"
+            rows="2"
+            required
+            [(ngModel)]="instruction.text"
+            [name]="'instruction' + instruction.id"
+          ></textarea>
+          <button
+            type="button"
+            class="remove-btn"
+            (click)="removeInstruction(i)"
+          >
+            ×
+          </button>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="add-instruction-btn"
+        (click)="addInstruction()"
+      >
+        + Add Step
+      </button>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="submit-btn">Update Recipe</button>
+      <button type="button" class="cancel-btn" (click)="onCancel()">
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
