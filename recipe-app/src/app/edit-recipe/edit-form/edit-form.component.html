@@ -1,9 +1,9 @@
 <div class="add-recipe-container">
-  <h1>Edit Recipe</h1>
+  <h1 class="main-title">Edit Recipe</h1>
 
   <form class="recipe-form" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="name">Recipe Name</label>
+      <label class="form-group-title" for="name">Recipe Name</label>
       <input
         type="text"
         id="name"
@@ -15,7 +15,7 @@
     </div>
 
     <div class="form-group">
-      <label for="image">Image URL</label>
+      <label class="form-group-title" for="image">Image URL</label>
       <input
         type="url"
         id="image"
@@ -27,8 +27,13 @@
     </div>
 
     <div class="form-group">
-      <label for="category">Category</label>
-      <select [(ngModel)]="recipe.category" name="category" required>
+      <label class="form-group-title" for="category">Category</label>
+      <select
+        [(ngModel)]="recipe.category"
+        class="outline-styling"
+        name="category"
+        required
+      >
         <option value="" disabled>Select category</option>
         <option *ngFor="let cat of categories" [value]="cat._id">
           {{ cat.name }}
@@ -37,7 +42,7 @@
     </div>
 
     <div class="form-group">
-      <label>Ingredients</label>
+      <label class="form-group-title">Ingredients</label>
       <div class="ingredients-list">
         <div
           class="ingredient-item"
@@ -46,6 +51,7 @@
           <select
             [(ngModel)]="ingredient.ingredient"
             [name]="'ingredient' + i"
+            class="outline-styling ingredient-select"
             required
           >
             <option value="" disabled>Select ingredient</option>
@@ -67,7 +73,7 @@
             [(ngModel)]="ingredient.unit"
             [name]="'unit' + i"
             required
-            class="unit"
+            class="unit outline-styling ingredient-select"
           >
             <option value="" disabled>Select unit</option>
             <option *ngFor="let unit of validUnits" [value]="unit">
@@ -79,7 +85,12 @@
             class="remove-btn"
             (click)="removeIngredient(i)"
           >
-            ×
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path
+                fill="#ff4444"
+                d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0L284.2 0c12.1 0 23.2 6.8 28.6 17.7L320 32l96 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64S14.3 32 32 32l96 0 7.2-14.3zM32 128l384 0 0 320c0 35.3-28.7 64-64 64L96 512c-35.3 0-64-28.7-64-64l0-320zm96 64c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16z"
+              />
+            </svg>
           </button>
         </div>
       </div>
@@ -93,7 +104,7 @@
     </div>
 
     <div class="form-group">
-      <label>Instructions</label>
+      <label class="form-group-title">Instructions</label>
       <div class="instructions-list">
         <div
           class="instruction-item"
@@ -115,7 +126,12 @@
             class="remove-btn"
             (click)="removeInstruction(i)"
           >
-            ×
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+              <path
+                fill="#ff4444"
+                d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0L284.2 0c12.1 0 23.2 6.8 28.6 17.7L320 32l96 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 96C14.3 96 0 81.7 0 64S14.3 32 32 32l96 0 7.2-14.3zM32 128l384 0 0 320c0 35.3-28.7 64-64 64L96 512c-35.3 0-64-28.7-64-64l0-320zm96 64c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16l0 224c0 8.8 7.2 16 16 16s16-7.2 16-16l0-224c0-8.8-7.2-16-16-16z"
+              />
+            </svg>
           </button>
         </div>
       </div>
