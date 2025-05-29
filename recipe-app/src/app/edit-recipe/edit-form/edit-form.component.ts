@@ -1,4 +1,4 @@
-import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, ChangeDetectorRef, OnInit, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
@@ -67,6 +67,14 @@ export class EditRecipeComponent implements OnInit {
   ];
 
   categories: any[] = [];
+
+  isMobile: boolean = window.innerWidth <= 500;
+  
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    this.isMobile = window.innerWidth <= 500;
+    this.cdRef.detectChanges();
+  }
 
   getCategories() {
     const categories_url =

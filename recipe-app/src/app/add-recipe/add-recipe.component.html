@@ -62,7 +62,9 @@
             class="outline-styling ingredient-select"
             required
           >
-            <option value="" disabled>Select ingredient</option>
+            <option value="" hidden>
+              {{ isMobile ? "Ingredient" : "Select ingredient" }}
+            </option>
             <option *ngFor="let ing of ingredients" [value]="ing._id">
               {{ ing.name }}
             </option>
@@ -83,7 +85,9 @@
             required
             class="unit outline-styling ingredient-select"
           >
-            <option value="" disabled>Select unit</option>
+            <option value="" hidden>
+              {{ isMobile ? "Unit" : "Select unit" }}
+            </option>
             <option *ngFor="let unit of validUnits" [value]="unit">
               {{ unit || "No unit" }}
             </option>
