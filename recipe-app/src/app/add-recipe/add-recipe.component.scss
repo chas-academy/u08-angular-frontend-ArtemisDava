@@ -7,6 +7,22 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.remove-btn {
+  background: none;
+  font-size: 18px;
+  padding: 4px;
+  line-height: 1;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover svg path {
+    fill: #cc0000;
+  }
+}
+
 .recipe-form {
   display: flex;
   flex-direction: column;
@@ -32,6 +48,8 @@
     border-radius: 4px;
     font-size: 16px;
     font-family: "Playfair Display", serif;
+    flex: 1;
+    min-width: 0;
 
     &.outline-styling {
       border: 0;
@@ -61,51 +79,50 @@
   align-items: center;
   padding: 12px 0;
   border-radius: 4px;
+  flex-wrap: wrap;
 
   input[type="number"] {
-    width: 60px;
+    flex: 0 0 60px;
     text-align: right;
+    min-width: 60px;
   }
 
   input[type="text"] {
-    width: 60px;
+    flex: 0 0 60px;
+    min-width: 60px;
+  }
+
+  .ingredient-select {
+    flex: 2;
+    min-width: 120px;
+  }
+
+  .unit {
+    flex: 1;
+    min-width: 80px;
   }
 }
 
+//KOLLA KODEN
 .instructions-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
+//KOLLA KODEN
 .instruction-item {
   display: flex;
   gap: 12px;
-  align-items: flex-start;
+  align-items: center;
   padding: 12px 0;
   border-radius: 4px;
-  align-items: center;
 
   textarea {
     flex: 1;
+    min-width: 200px;
     min-height: 60px;
     resize: vertical;
-  }
-}
-
-.remove-btn {
-  background: none;
-  font-size: 18px;
-  padding: 4px;
-  line-height: 1;
-  width: 24px;
-  height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  &:hover svg path {
-    fill: #cc0000;
   }
 }
 
@@ -138,6 +155,7 @@
     border-radius: 4px;
     font-weight: 600;
     cursor: pointer;
+    min-width: 100px;
   }
 
   .submit-btn {
@@ -158,5 +176,77 @@
     &:hover {
       background: #f5f5f5;
     }
+  }
+}
+@media (max-width: 768px) {
+  .add-recipe-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .add-recipe-container {
+    margin: 0.5rem;
+    padding: 0.75rem;
+  }
+
+  .form-group-title {
+    font-size: 1rem;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+
+  .ingredient-item .ingredient-select {
+    flex: 1;
+    min-width: 100px;
+  }
+
+  .ingredient-item {
+    gap: 8px;
+    padding: 8px 0;
+
+    input[type="number"] {
+      flex: 0 0 50px;
+      min-width: 50px;
+    }
+    input[type="text"] {
+      flex: 0 0 50px;
+      min-width: 50px;
+    }
+
+    .ingredient-select {
+      flex: 1;
+      min-width: 100px;
+    }
+    .unit {
+      flex: 0 0 70px;
+      min-width: 70px;
+    }
+  }
+  .instruction-item {
+    textarea {
+      min-width: 150px;
+      min-height: 100px;
+    }
+  }
+  .form-actions {
+    gap: 8px;
+    margin-top: 0.75rem;
+
+    button {
+      padding: 6px 12px;
+      font-size: 14px;
+      min-width: 80px;
+    }
+  }
+  .main-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
   }
 }
