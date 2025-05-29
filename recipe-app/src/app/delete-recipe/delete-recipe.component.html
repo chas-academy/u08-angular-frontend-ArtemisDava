@@ -1,0 +1,14 @@
+<h1 id="main-title">Delete Recipes</h1>
+<div id="recipe-container">
+  @for (recipe of recipes; track recipe.id) {
+  <div class="recipe-card">
+    <img [src]="recipe.image" class="recipe-image" [alt]="recipe.name" />
+    <div class="recipe-desc-card">
+      <h2 class="recipe-title">
+        {{ recipe.name }}
+      </h2>
+      <button (click)="deleteRecipe(recipe.id)">Delete Recipe</button>
+    </div>
+  </div>
+  }
+</div>
